@@ -9,6 +9,8 @@ import AdminPage from "./components/pages/admin/AdminPage";
 import Profile from "./components/pages/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/layout/Footer";
+import Login from "./components/pages/LoginPage";
+import SignUp from "./components/pages/SignUpPage";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -29,6 +31,8 @@ const App = () => {
             <Route path="/lecturer" element={<LecturerPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </Router>
       </main>

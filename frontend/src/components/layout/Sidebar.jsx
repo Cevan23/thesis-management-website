@@ -12,8 +12,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       </div>
       <Nav defaultActiveKey="/home" className="flex-column">
         <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="/student">My Thesis</Nav.Link>
-        <Nav.Link href="#subscriptions">Setting</Nav.Link>
+        <Nav.Link href="/student">Student</Nav.Link>
+        <Nav.Link href="/login">Login</Nav.Link>
+        <Nav.Link href="/signup">Sign Up</Nav.Link>
       </Nav>
     </div>
   );

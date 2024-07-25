@@ -5,10 +5,10 @@ const checkAuth = require('../middleware/check-auth');
 
 /**
  * @swagger
- * /signup:
+ * /external/signup:
  *   post:
  *     summary: Signup a new user
- *     tags: [External]
+ *     tags: [external]
  *     requestBody:
  *       required: true
  *       content:
@@ -29,6 +29,13 @@ const checkAuth = require('../middleware/check-auth');
  *                 type: string
  *               lastname:
  *                 type: string
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: Optional bearer token for authorization
  *     responses:
  *       201:
  *         description: User created successfully
@@ -41,10 +48,10 @@ router.post("/signup", ExternalController.user_signup);
 
 /**
  * @swagger
- * /login:
+ * /external/login:
  *   post:
- *     summary: Login a user
- *     tags: [External]
+ *     summary: user login
+ *     tags: [external]
  *     requestBody:
  *       required: true
  *       content:
@@ -59,11 +66,20 @@ router.post("/signup", ExternalController.user_signup);
  *                 type: string
  *               password:
  *                 type: string
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: Optional bearer token for authorization
  *     responses:
- *       200:
- *         description: Successful login
- *       401:
- *         description: Authentication failed
+ *       201:
+ *         description: login successfully
+ *      401:
+ *        description: Auth failed, Wrong email or password
+ *       500:
+ *         description: Error
  */
 router.post("/login", ExternalController.user_login);
 

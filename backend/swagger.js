@@ -9,6 +9,12 @@ const options = {
       version: '1.0.0',
       description: 'Your API documentation',
     },
+    servers: [
+      {
+        url: 'http://localhost:5000',
+      },
+    ],
+    
   },
   apis: ['./routes/*.js', './controllers/*.js'],
 };
