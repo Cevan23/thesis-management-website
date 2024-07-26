@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { ExternalApi } from '../../api/api';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const api = new ExternalApi();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
-
+    setSuccess('');
+    const externalLoginPostRequest = {
+      email,
+      password,
+    };
     try {
-      const response = await axios.post('http://localhost:3000/external/login', {
-        email,
-        password
-      });
-      if (response.status === 201) {
-        // Lưu token hoặc thông tin người dùng vào localStorage hoặc state
-        // Chuyển hướng người dùng đến trang khác nếu cần
-       
+      const response = await api.externalLoginPost(externalLoginPostRequest);
+      if (response.status === 200) {
+        Cookies.set('jwt', response.data.token, { expires: 5 / 24 }); // Thời gian sống của cookie (5 giờ)
+        setSuccess(response.data.message);
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        setError('Authentication failed. Wrong email or password.');
+        setError('Invalid email or password.');
       } else {
-        setError('An error occurred. Please try again.');
+        setError('An error occurred in Login. Please try again.');
       }
     }
   };
@@ -56,6 +59,7 @@ const Login = () => {
           />
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
     </div>

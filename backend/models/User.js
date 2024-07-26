@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
  
-
 const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     email: { 
@@ -15,7 +14,7 @@ const userSchema = mongoose.Schema({
             enum: ['Guest','Admin','Professor','Student','Secretariat']
     },
     university: { type: mongoose.Schema.Types.ObjectId, ref: 'University'},
-    
+    imageprofile: String,
     });
 
 module.exports = mongoose.model('User', userSchema);

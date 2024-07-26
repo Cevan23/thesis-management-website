@@ -76,8 +76,8 @@ router.post("/signup", ExternalController.user_signup);
  *     responses:
  *       201:
  *         description: login successfully
- *      401:
- *        description: Auth failed, Wrong email or password
+ *       401:
+ *         description: Auth failed, Wrong email or password
  *       500:
  *         description: Error
  */

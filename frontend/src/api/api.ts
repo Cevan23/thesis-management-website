@@ -26,6 +26,25 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface ExternalLoginPostRequest
+ */
+export interface ExternalLoginPostRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalLoginPostRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalLoginPostRequest
+     */
+    'password': string;
+}
+/**
+ * 
+ * @export
  * @interface ExternalSignupPostRequest
  */
 export interface ExternalSignupPostRequest {
@@ -61,6 +80,47 @@ export interface ExternalSignupPostRequest {
  */
 export const ExternalApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary user login
+         * @param {ExternalLoginPostRequest} externalLoginPostRequest 
+         * @param {string} [authorization] Optional bearer token for authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        externalLoginPost: async (externalLoginPostRequest: ExternalLoginPostRequest, authorization?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'externalLoginPostRequest' is not null or undefined
+            assertParamExists('externalLoginPost', 'externalLoginPostRequest', externalLoginPostRequest)
+            const localVarPath = `/external/login`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization != null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(externalLoginPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @summary Signup a new user
@@ -114,6 +174,20 @@ export const ExternalApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary user login
+         * @param {ExternalLoginPostRequest} externalLoginPostRequest 
+         * @param {string} [authorization] Optional bearer token for authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async externalLoginPost(externalLoginPostRequest: ExternalLoginPostRequest, authorization?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.externalLoginPost(externalLoginPostRequest, authorization, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExternalApi.externalLoginPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Signup a new user
          * @param {ExternalSignupPostRequest} externalSignupPostRequest 
          * @param {string} [authorization] Optional bearer token for authorization
@@ -138,6 +212,17 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
+         * @summary user login
+         * @param {ExternalLoginPostRequest} externalLoginPostRequest 
+         * @param {string} [authorization] Optional bearer token for authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        externalLoginPost(externalLoginPostRequest: ExternalLoginPostRequest, authorization?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.externalLoginPost(externalLoginPostRequest, authorization, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Signup a new user
          * @param {ExternalSignupPostRequest} externalSignupPostRequest 
          * @param {string} [authorization] Optional bearer token for authorization
@@ -157,6 +242,19 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class ExternalApi extends BaseAPI {
+    /**
+     * 
+     * @summary user login
+     * @param {ExternalLoginPostRequest} externalLoginPostRequest 
+     * @param {string} [authorization] Optional bearer token for authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExternalApi
+     */
+    public externalLoginPost(externalLoginPostRequest: ExternalLoginPostRequest, authorization?: string, options?: RawAxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).externalLoginPost(externalLoginPostRequest, authorization, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Signup a new user

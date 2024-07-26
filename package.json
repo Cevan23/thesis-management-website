@@ -2,7 +2,8 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd backend && npm start",
-    "client": "cd frontend && npm start"
+    "client": "cd frontend && npm start",
+    "prestart:server": "cd backend && openapi-generator-cli generate -i http://localhost:5000/swagger.json -g typescript-axios -o ../frontend/src/api"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
