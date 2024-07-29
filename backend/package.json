@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "openapi:generate": "openapi-generator-cli generate -i http://localhost:5000/swagger.json -g typescript-axios -o ../frontend/src/api"
+    "openapi:generate": "openapi-generator-cli generate -i http://localhost:5000/swagger.json -g typescript-axios -o ../frontend/src/api && node post-generate.js"
   },
   "keywords": [],
   "author": "",

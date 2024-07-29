@@ -73,6 +73,147 @@ export interface ExternalSignupPostRequest {
      */
     'lastname': string;
 }
+/**
+ * 
+ * @export
+ * @interface ProfessorThesisPost201Response
+ */
+export interface ProfessorThesisPost201Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPost201Response
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Thesis}
+     * @memberof ProfessorThesisPost201Response
+     */
+    'thesis'?: Thesis;
+}
+/**
+ * 
+ * @export
+ * @interface ProfessorThesisPostRequest
+ */
+export interface ProfessorThesisPostRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'prerequisites'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'university': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'professor': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'creator_student'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'creator_external'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfessorThesisPostRequest
+     */
+    'images'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Thesis
+ */
+export interface Thesis {
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'prerequisites'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Thesis
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'university': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'professor': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'creator_student'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'creator_external'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Thesis
+     */
+    'images'?: string;
+}
 
 /**
  * ExternalApi - axios parameter creator
@@ -100,6 +241,7 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             }
 
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+    localVarRequestOptions.withCredentials = true;
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -266,6 +408,116 @@ export class ExternalApi extends BaseAPI {
      */
     public externalSignupPost(externalSignupPostRequest: ExternalSignupPostRequest, authorization?: string, options?: RawAxiosRequestConfig) {
         return ExternalApiFp(this.configuration).externalSignupPost(externalSignupPostRequest, authorization, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ThesisApi - axios parameter creator
+ * @export
+ */
+export const ThesisApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new thesis
+         * @param {ProfessorThesisPostRequest} professorThesisPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        professorThesisPost: async (professorThesisPostRequest: ProfessorThesisPostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'professorThesisPostRequest' is not null or undefined
+            assertParamExists('professorThesisPost', 'professorThesisPostRequest', professorThesisPostRequest)
+            const localVarPath = `/professor/thesis`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(professorThesisPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ThesisApi - functional programming interface
+ * @export
+ */
+export const ThesisApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ThesisApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new thesis
+         * @param {ProfessorThesisPostRequest} professorThesisPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async professorThesisPost(professorThesisPostRequest: ProfessorThesisPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProfessorThesisPost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.professorThesisPost(professorThesisPostRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ThesisApi.professorThesisPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ThesisApi - factory interface
+ * @export
+ */
+export const ThesisApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ThesisApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new thesis
+         * @param {ProfessorThesisPostRequest} professorThesisPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        professorThesisPost(professorThesisPostRequest: ProfessorThesisPostRequest, options?: any): AxiosPromise<ProfessorThesisPost201Response> {
+            return localVarFp.professorThesisPost(professorThesisPostRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ThesisApi - object-oriented interface
+ * @export
+ * @class ThesisApi
+ * @extends {BaseAPI}
+ */
+export class ThesisApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new thesis
+     * @param {ProfessorThesisPostRequest} professorThesisPostRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ThesisApi
+     */
+    public professorThesisPost(professorThesisPostRequest: ProfessorThesisPostRequest, options?: RawAxiosRequestConfig) {
+        return ThesisApiFp(this.configuration).professorThesisPost(professorThesisPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

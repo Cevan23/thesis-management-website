@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import React, { useContext,useState } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 import { ExternalApi } from '../../api/api';
 import Cookies from 'js-cookie';
 
 const Login = () => {
+  const { updateAuthState } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState('');
@@ -20,7 +22,9 @@ const Login = () => {
     try {
       const response = await api.externalLoginPost(externalLoginPostRequest);
       if (response.status === 200) {
-        Cookies.set('jwt', response.data.token, { expires: 5 / 24 }); // Thời gian sống của cookie (5 giờ)
+        const token = response.data.token;
+        Cookies.set('token', token, { expires: 5 });
+        updateAuthState(response.data.role);
         setSuccess(response.data.message);
       }
     } catch (error) {

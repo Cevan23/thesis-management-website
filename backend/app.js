@@ -6,8 +6,10 @@ require('dotenv').config();
 
 // just allow requests from localhost:3000
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'http://localhost:3000',
+  credentials: true
 }));
+
 // using express.json() to parse incoming requests with JSON payloads
 app.use(express.json());
 
@@ -22,5 +24,8 @@ db.once('open', function () {
 
 const external_loginRoutes=require('./routes/external');
 app.use('/external',external_loginRoutes);
+
+const professorRoutes=require('./routes/professor');
+app.use('/professor',professorRoutes);
 
 module.exports = app;

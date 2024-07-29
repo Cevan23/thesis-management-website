@@ -14,7 +14,50 @@ const options = {
         url: 'http://localhost:5000',
       },
     ],
-    
+    components: {
+      schemas: {
+        Thesis: {
+          type: 'object',
+          required: [
+            'title',
+            'university',
+            'professor'
+          ],
+          properties: {
+            title: {
+              type: 'string'
+            },
+            description: {
+              type: 'string'
+            },
+            prerequisites: {
+              type: 'string'
+            },
+            tags: {
+              type: 'array',
+              items: {
+                type: 'string'
+              }
+            },
+            university: {
+              type: 'string'
+            },
+            professor: {
+              type: 'string'
+            },
+            creator_student: {
+              type: 'string'
+            },
+            creator_external: {
+              type: 'string'
+            },
+            images: {
+              type: 'string'
+            }
+          }
+        }
+      }
+    }
   },
   apis: ['./routes/*.js', './controllers/*.js'],
 };
@@ -22,6 +65,6 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 module.exports = (app) => {
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-    app.get('/swagger.json', (req, res) => res.json(swaggerSpec));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get('/swagger.json', (req, res) => res.json(swaggerSpec));
 };

@@ -82,16 +82,10 @@ exports.user_login = (req, res, next) => {
               expiresIn: "5h",
             }
           );
-          // Lưu token vào cookie
-          res.cookie('jwt', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', // Chỉ gửi qua HTTPS trong môi trường sản xuất
-            sameSite: 'Strict', // Ngăn chặn CSRF
-            maxAge: 5 * 60 * 60 * 1000 // Thời gian sống của cookie (5 giờ)
-          });
           return res.status(200).json({
             message: "Auth successful",
             role: user[0].role,
+            token: token,
           });
         }
         res.status(401).json({

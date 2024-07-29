@@ -76,12 +76,18 @@ router.post("/signup", ExternalController.user_signup);
  *     responses:
  *       201:
  *         description: login successfully
+ *         headers:
+ *           Set-Cookie:
+ *             schema:
+ *               type: string
+ *               example: jwt=<token>; HttpOnly; Secure; SameSite=None
  *       401:
  *         description: Auth failed, Wrong email or password
  *       500:
  *         description: Error
  */
 router.post("/login", ExternalController.user_login);
+
 
 router.all("/*",checkAuth);
 
