@@ -28,4 +28,7 @@ app.use('/external',external_loginRoutes);
 const professorRoutes=require('./routes/professor');
 app.use('/professor',professorRoutes);
 
+const universityRoutes = require('./routes/university');
+app.use('/university',universityRoutes);
+
 module.exports = app;

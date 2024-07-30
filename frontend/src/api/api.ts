@@ -214,6 +214,83 @@ export interface Thesis {
      */
     'images'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface UniversityCreatePost201Response
+ */
+export interface UniversityCreatePost201Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityCreatePost201Response
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {UniversityCreatePost201ResponseData}
+     * @memberof UniversityCreatePost201Response
+     */
+    'data'?: UniversityCreatePost201ResponseData;
+}
+/**
+ * 
+ * @export
+ * @interface UniversityCreatePost201ResponseData
+ */
+export interface UniversityCreatePost201ResponseData {
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityCreatePost201ResponseData
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityCreatePost201ResponseData
+     */
+    'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UniversityCreatePost400Response
+ */
+export interface UniversityCreatePost400Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityCreatePost400Response
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UniversityCreatePost500Response
+ */
+export interface UniversityCreatePost500Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityCreatePost500Response
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UniversityCreatePostRequest
+ */
+export interface UniversityCreatePostRequest {
+    /**
+     * The name of the university
+     * @type {string}
+     * @memberof UniversityCreatePostRequest
+     */
+    'name': string;
+}
 
 /**
  * AuthApi - axios parameter creator
@@ -692,6 +769,116 @@ export class ThesisApi extends BaseAPI {
      */
     public professorThesisPost(professorThesisPostRequest: ProfessorThesisPostRequest, options?: RawAxiosRequestConfig) {
         return ThesisApiFp(this.configuration).professorThesisPost(professorThesisPostRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * UniversityApi - axios parameter creator
+ * @export
+ */
+export const UniversityApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new university
+         * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        universityCreatePost: async (universityCreatePostRequest: UniversityCreatePostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'universityCreatePostRequest' is not null or undefined
+            assertParamExists('universityCreatePost', 'universityCreatePostRequest', universityCreatePostRequest)
+            const localVarPath = `/university/create`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(universityCreatePostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UniversityApi - functional programming interface
+ * @export
+ */
+export const UniversityApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UniversityApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new university
+         * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async universityCreatePost(universityCreatePostRequest: UniversityCreatePostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UniversityCreatePost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.universityCreatePost(universityCreatePostRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UniversityApi.universityCreatePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * UniversityApi - factory interface
+ * @export
+ */
+export const UniversityApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UniversityApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new university
+         * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        universityCreatePost(universityCreatePostRequest: UniversityCreatePostRequest, options?: any): AxiosPromise<UniversityCreatePost201Response> {
+            return localVarFp.universityCreatePost(universityCreatePostRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UniversityApi - object-oriented interface
+ * @export
+ * @class UniversityApi
+ * @extends {BaseAPI}
+ */
+export class UniversityApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new university
+     * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UniversityApi
+     */
+    public universityCreatePost(universityCreatePostRequest: UniversityCreatePostRequest, options?: RawAxiosRequestConfig) {
+        return UniversityApiFp(this.configuration).universityCreatePost(universityCreatePostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
