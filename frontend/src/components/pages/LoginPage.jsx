@@ -1,16 +1,15 @@
-import React, { useContext,useState } from 'react';
-import { AuthContext } from "../../context/AuthContext";
 import { ExternalApi } from '../../api/api';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Login = () => {
-  const { updateAuthState } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const api = new ExternalApi();
-
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -23,9 +22,18 @@ const Login = () => {
       const response = await api.externalLoginPost(externalLoginPostRequest);
       if (response.status === 200) {
         const token = response.data.token;
+        const role = response.data.role;
         Cookies.set('token', token, { expires: 5 });
-        updateAuthState(response.data.role);
         setSuccess(response.data.message);
+        if (role === 'Admin') {
+          navigate('/admin');
+        } else if (role === 'Professor') {
+          navigate('/professor');
+        } else if (role === 'Student') {
+          navigate('/student');
+        } else {
+          navigate('*'); 
+        }
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {

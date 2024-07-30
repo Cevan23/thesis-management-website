@@ -15,6 +15,13 @@ const options = {
       },
     ],
     components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
       schemas: {
         Thesis: {
           type: 'object',
@@ -59,7 +66,7 @@ const options = {
       }
     }
   },
-  apis: ['./routes/*.js', './controllers/*.js'],
+  apis: ['./routes/*.js', './controllers/*.js', './middleware/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

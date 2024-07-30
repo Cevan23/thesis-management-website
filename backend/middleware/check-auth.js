@@ -1,5 +1,19 @@
 const jwt = require('jsonwebtoken');
 
+/**
+ * @swagger
+ * /auth/check:
+ *   get:
+ *     summary: Check authentication
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Authenticated successfully
+ *       401:
+ *         description: Unauthorized - Auth failed
+ */
 module.exports = (req, res, next) => {
     
     try { 

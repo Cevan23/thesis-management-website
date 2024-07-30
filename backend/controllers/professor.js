@@ -4,6 +4,22 @@ const University = require("../models/University");
 const Thesis = require("../models/Thesis");
 const Thesis_File = require("../models/Thesis_File");
 
+/**
+ * @swagger
+ * /auth/is-professor:
+ *   get:
+ *     summary: Check if user is a professor
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User is a professor
+ *       400:
+ *         description: You are not a professor
+ *       401:
+ *         description: Unauthorized - Auth failed
+ */
 exports.isProfessor = (req, res, next) => {
   if (
     req.userData.role != "Professor" &&
