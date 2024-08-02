@@ -37,16 +37,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           )}
           {role === "Professor" && (
             <>
-              <Nav.Link href="*">Home</Nav.Link>
               <Nav.Link href="/professor">Professor</Nav.Link>
               <Nav.Link href="/login">Sing out</Nav.Link>
             </>
           )}
           {role === "Admin" && (
             <>
-              <Nav.Link href="*">Home</Nav.Link>
               <Nav.Link href="/admin">Admin</Nav.Link>
               <Nav.Link href="/login">Sing out</Nav.Link>
+              <Nav.Link href="/admin/user">User Management</Nav.Link>
             </>
           )}
           {role === "" && (

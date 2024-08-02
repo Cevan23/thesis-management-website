@@ -64,4 +64,66 @@ const universityController = require('../controllers/university');
  */
 router.post('/create', universityController.create_university);
 
+/**
+ * @swagger
+ * /university/get:
+ *   get:
+ *     summary: Retrieve a list of universities
+ *     tags: [University]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: The page number to retrieve
+ *       - in: query
+ *         name: university
+ *         schema:
+ *           type: string
+ *         description: The university to filter by
+ *     responses:
+ *       200:
+ *         description: A list of universities
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 docs:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                       name:
+ *                         type: string
+ *                         example: "Harvard University"
+ *                       pending:
+ *                         type: boolean
+ *                         example: false
+ *                       university:
+ *                         type: string
+ *                         example: "Harvard"
+ *                 count:
+ *                   type: integer
+ *                   example: 10
+ *                 pages:
+ *                   type: integer
+ *                   example: 2
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Internal server error"
+ */
+router.get('/get', universityController.get_all);
+
 module.exports = router;

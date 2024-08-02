@@ -12,6 +12,7 @@ import Login from "./components/pages/LoginPage";
 import SignUp from "./components/pages/SignUpPage";
 import ThesisDetail from "./components/pages/Professor/Thesis/ThesisDetail";
 import { useState } from "react";
+import {UserDetail, UserList} from './components/pages/admin/User'
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,6 +35,8 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/thesis" element={<ThesisDetail />} />
+              <Route path="/admin/user" element={<UserList />} />
+              <Route path="/admin/user/:userId" element={<UserDetail />} />
             </Routes>
           </main>
           <Footer />

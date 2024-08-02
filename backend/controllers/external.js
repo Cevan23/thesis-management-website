@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const External = require("../models/external");
+const External = require("../models/External");
+const University = require("../models/University");
 
 exports.user_signup = (req, res, next) => {
   External.find({ email: req.body.email })
@@ -76,6 +77,7 @@ exports.user_login = (req, res, next) => {
               role: user[0].role,
               name: user[0].name,
               lastname: user[0].lastname,
+              University: user[0].university,
             },
             process.env.JWT_KEY,
             {

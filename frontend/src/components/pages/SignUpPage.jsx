@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ExternalApi } from '../../api/api';
+import { Button } from '@material-tailwind/react';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -91,8 +92,9 @@ const SignUp = () => {
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
         {success && <div className="alert alert-success">{success}</div>}
-        <button type="submit" className="btn btn-primary">Sign Up</button>
+        
       </form>
+      <Button type="submit" className="btn btn-primary">Sign Up</Button>
     </div>
   );
 };

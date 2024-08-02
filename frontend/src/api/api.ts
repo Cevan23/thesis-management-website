@@ -26,6 +26,273 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface AdminExternalGet200Response
+ */
+export interface AdminExternalGet200Response {
+    /**
+     * 
+     * @type {Array<AdminExternalGet200ResponseDocsInner>}
+     * @memberof AdminExternalGet200Response
+     */
+    'docs'?: Array<AdminExternalGet200ResponseDocsInner>;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdminExternalGet200Response
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdminExternalGet200Response
+     */
+    'pages'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface AdminExternalGet200ResponseDocsInner
+ */
+export interface AdminExternalGet200ResponseDocsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet200ResponseDocsInner
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet200ResponseDocsInner
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet200ResponseDocsInner
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet200ResponseDocsInner
+     */
+    'lastname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet200ResponseDocsInner
+     */
+    'role'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AdminExternalGet200ResponseDocsInner
+     */
+    'active'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AdminExternalGet404Response
+ */
+export interface AdminExternalGet404Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet404Response
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminExternalGet500Response
+ */
+export interface AdminExternalGet500Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminExternalGet500Response
+     */
+    'error'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUniversityPost200Response
+ */
+export interface AdminUniversityPost200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUniversityPost200Response
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUniversityPost200Response
+     */
+    'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUniversityPost500Response
+ */
+export interface AdminUniversityPost500Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUniversityPost500Response
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUniversityPost500Response
+     */
+    'error'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUniversityPostRequest
+ */
+export interface AdminUniversityPostRequest {
+    /**
+     * The name of the university
+     * @type {string}
+     * @memberof AdminUniversityPostRequest
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserPost201Response
+ */
+export interface AdminUserPost201Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201Response
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {AdminUserPost201ResponseUser}
+     * @memberof AdminUserPost201Response
+     */
+    'user'?: AdminUserPost201ResponseUser;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserPost201ResponseUser
+ */
+export interface AdminUserPost201ResponseUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    'lastname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    'role'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    'university'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
+    'imageprofile'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserPostRequest
+ */
+export interface AdminUserPostRequest {
+    /**
+     * The email of the user
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'email': string;
+    /**
+     * The name of the user
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'name'?: string;
+    /**
+     * The lastname of the user
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'lastname'?: string;
+    /**
+     * The role of the user
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'role': AdminUserPostRequestRoleEnum;
+    /**
+     * The ID of the university
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'university'?: string;
+    /**
+     * The profile image URL of the user
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'imageprofile'?: string;
+}
+
+export const AdminUserPostRequestRoleEnum = {
+    Guest: 'Guest',
+    Admin: 'Admin',
+    Professor: 'Professor',
+    Student: 'Student',
+    Secretariat: 'Secretariat'
+} as const;
+
+export type AdminUserPostRequestRoleEnum = typeof AdminUserPostRequestRoleEnum[keyof typeof AdminUserPostRequestRoleEnum];
+
+/**
+ * 
+ * @export
  * @interface ExternalLoginPostRequest
  */
 export interface ExternalLoginPostRequest {
@@ -228,29 +495,10 @@ export interface UniversityCreatePost201Response {
     'message'?: string;
     /**
      * 
-     * @type {UniversityCreatePost201ResponseData}
+     * @type {AdminUniversityPost200Response}
      * @memberof UniversityCreatePost201Response
      */
-    'data'?: UniversityCreatePost201ResponseData;
-}
-/**
- * 
- * @export
- * @interface UniversityCreatePost201ResponseData
- */
-export interface UniversityCreatePost201ResponseData {
-    /**
-     * 
-     * @type {string}
-     * @memberof UniversityCreatePost201ResponseData
-     */
-    '_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UniversityCreatePost201ResponseData
-     */
-    'name'?: string;
+    'data'?: AdminUniversityPost200Response;
 }
 /**
  * 
@@ -281,15 +529,58 @@ export interface UniversityCreatePost500Response {
 /**
  * 
  * @export
- * @interface UniversityCreatePostRequest
+ * @interface UniversityGetGet200Response
  */
-export interface UniversityCreatePostRequest {
+export interface UniversityGetGet200Response {
     /**
-     * The name of the university
-     * @type {string}
-     * @memberof UniversityCreatePostRequest
+     * 
+     * @type {Array<UniversityGetGet200ResponseDocsInner>}
+     * @memberof UniversityGetGet200Response
      */
-    'name': string;
+    'docs'?: Array<UniversityGetGet200ResponseDocsInner>;
+    /**
+     * 
+     * @type {number}
+     * @memberof UniversityGetGet200Response
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UniversityGetGet200Response
+     */
+    'pages'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface UniversityGetGet200ResponseDocsInner
+ */
+export interface UniversityGetGet200ResponseDocsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityGetGet200ResponseDocsInner
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityGetGet200ResponseDocsInner
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UniversityGetGet200ResponseDocsInner
+     */
+    'pending'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UniversityGetGet200ResponseDocsInner
+     */
+    'university'?: string;
 }
 
 /**
@@ -471,6 +762,75 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
+         * @summary Activate an external user
+         * @param {string} userId The ID of the external user to activate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminExternalActivateUserIdPatch: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('adminExternalActivateUserIdPatch', 'userId', userId)
+            const localVarPath = `/admin/external/activate/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve a list of external users
+         * @param {number} [page] The page number to retrieve
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminExternalGet: async (page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/admin/external`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary user login
          * @param {ExternalLoginPostRequest} externalLoginPostRequest 
          * @param {string} [authorization] Optional bearer token for authorization
@@ -563,6 +923,32 @@ export const ExternalApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Activate an external user
+         * @param {string} userId The ID of the external user to activate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async adminExternalActivateUserIdPatch(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminExternalGet200ResponseDocsInner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminExternalActivateUserIdPatch(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExternalApi.adminExternalActivateUserIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve a list of external users
+         * @param {number} [page] The page number to retrieve
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async adminExternalGet(page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminExternalGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminExternalGet(page, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ExternalApi.adminExternalGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary user login
          * @param {ExternalLoginPostRequest} externalLoginPostRequest 
          * @param {string} [authorization] Optional bearer token for authorization
@@ -601,6 +987,26 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
+         * @summary Activate an external user
+         * @param {string} userId The ID of the external user to activate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminExternalActivateUserIdPatch(userId: string, options?: any): AxiosPromise<AdminExternalGet200ResponseDocsInner> {
+            return localVarFp.adminExternalActivateUserIdPatch(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve a list of external users
+         * @param {number} [page] The page number to retrieve
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminExternalGet(page?: number, options?: any): AxiosPromise<AdminExternalGet200Response> {
+            return localVarFp.adminExternalGet(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary user login
          * @param {ExternalLoginPostRequest} externalLoginPostRequest 
          * @param {string} [authorization] Optional bearer token for authorization
@@ -631,6 +1037,30 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class ExternalApi extends BaseAPI {
+    /**
+     * 
+     * @summary Activate an external user
+     * @param {string} userId The ID of the external user to activate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExternalApi
+     */
+    public adminExternalActivateUserIdPatch(userId: string, options?: RawAxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).adminExternalActivateUserIdPatch(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve a list of external users
+     * @param {number} [page] The page number to retrieve
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExternalApi
+     */
+    public adminExternalGet(page?: number, options?: RawAxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).adminExternalGet(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary user login
@@ -783,13 +1213,49 @@ export const UniversityApiAxiosParamCreator = function (configuration?: Configur
         /**
          * 
          * @summary Create a new university
-         * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+         * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        universityCreatePost: async (universityCreatePostRequest: UniversityCreatePostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'universityCreatePostRequest' is not null or undefined
-            assertParamExists('universityCreatePost', 'universityCreatePostRequest', universityCreatePostRequest)
+        adminUniversityPost: async (adminUniversityPostRequest: AdminUniversityPostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'adminUniversityPostRequest' is not null or undefined
+            assertParamExists('adminUniversityPost', 'adminUniversityPostRequest', adminUniversityPostRequest)
+            const localVarPath = `/admin/university`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(adminUniversityPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create a new university
+         * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        universityCreatePost: async (adminUniversityPostRequest: AdminUniversityPostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'adminUniversityPostRequest' is not null or undefined
+            assertParamExists('universityCreatePost', 'adminUniversityPostRequest', adminUniversityPostRequest)
             const localVarPath = `/university/create`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -809,7 +1275,47 @@ export const UniversityApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(universityCreatePostRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(adminUniversityPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve a list of universities
+         * @param {number} [page] The page number to retrieve
+         * @param {string} [university] The university to filter by
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        universityGetGet: async (page?: number, university?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/university/get`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (university !== undefined) {
+                localVarQueryParameter['university'] = university;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -829,14 +1335,41 @@ export const UniversityApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create a new university
-         * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+         * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async universityCreatePost(universityCreatePostRequest: UniversityCreatePostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UniversityCreatePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.universityCreatePost(universityCreatePostRequest, options);
+        async adminUniversityPost(adminUniversityPostRequest: AdminUniversityPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminUniversityPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminUniversityPost(adminUniversityPostRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UniversityApi.adminUniversityPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create a new university
+         * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async universityCreatePost(adminUniversityPostRequest: AdminUniversityPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UniversityCreatePost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.universityCreatePost(adminUniversityPostRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UniversityApi.universityCreatePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve a list of universities
+         * @param {number} [page] The page number to retrieve
+         * @param {string} [university] The university to filter by
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async universityGetGet(page?: number, university?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UniversityGetGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.universityGetGet(page, university, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UniversityApi.universityGetGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -852,12 +1385,33 @@ export const UniversityApiFactory = function (configuration?: Configuration, bas
         /**
          * 
          * @summary Create a new university
-         * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+         * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        universityCreatePost(universityCreatePostRequest: UniversityCreatePostRequest, options?: any): AxiosPromise<UniversityCreatePost201Response> {
-            return localVarFp.universityCreatePost(universityCreatePostRequest, options).then((request) => request(axios, basePath));
+        adminUniversityPost(adminUniversityPostRequest: AdminUniversityPostRequest, options?: any): AxiosPromise<AdminUniversityPost200Response> {
+            return localVarFp.adminUniversityPost(adminUniversityPostRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create a new university
+         * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        universityCreatePost(adminUniversityPostRequest: AdminUniversityPostRequest, options?: any): AxiosPromise<UniversityCreatePost201Response> {
+            return localVarFp.universityCreatePost(adminUniversityPostRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve a list of universities
+         * @param {number} [page] The page number to retrieve
+         * @param {string} [university] The university to filter by
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        universityGetGet(page?: number, university?: string, options?: any): AxiosPromise<UniversityGetGet200Response> {
+            return localVarFp.universityGetGet(page, university, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -872,13 +1426,148 @@ export class UniversityApi extends BaseAPI {
     /**
      * 
      * @summary Create a new university
-     * @param {UniversityCreatePostRequest} universityCreatePostRequest 
+     * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UniversityApi
      */
-    public universityCreatePost(universityCreatePostRequest: UniversityCreatePostRequest, options?: RawAxiosRequestConfig) {
-        return UniversityApiFp(this.configuration).universityCreatePost(universityCreatePostRequest, options).then((request) => request(this.axios, this.basePath));
+    public adminUniversityPost(adminUniversityPostRequest: AdminUniversityPostRequest, options?: RawAxiosRequestConfig) {
+        return UniversityApiFp(this.configuration).adminUniversityPost(adminUniversityPostRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create a new university
+     * @param {AdminUniversityPostRequest} adminUniversityPostRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UniversityApi
+     */
+    public universityCreatePost(adminUniversityPostRequest: AdminUniversityPostRequest, options?: RawAxiosRequestConfig) {
+        return UniversityApiFp(this.configuration).universityCreatePost(adminUniversityPostRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve a list of universities
+     * @param {number} [page] The page number to retrieve
+     * @param {string} [university] The university to filter by
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UniversityApi
+     */
+    public universityGetGet(page?: number, university?: string, options?: RawAxiosRequestConfig) {
+        return UniversityApiFp(this.configuration).universityGetGet(page, university, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new user
+         * @param {AdminUserPostRequest} adminUserPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserPost: async (adminUserPostRequest: AdminUserPostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'adminUserPostRequest' is not null or undefined
+            assertParamExists('adminUserPost', 'adminUserPostRequest', adminUserPostRequest)
+            const localVarPath = `/admin/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(adminUserPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export const UserApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new user
+         * @param {AdminUserPostRequest} adminUserPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async adminUserPost(adminUserPostRequest: AdminUserPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminUserPost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminUserPost(adminUserPostRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.adminUserPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UserApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new user
+         * @param {AdminUserPostRequest} adminUserPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserPost(adminUserPostRequest: AdminUserPostRequest, options?: any): AxiosPromise<AdminUserPost201Response> {
+            return localVarFp.adminUserPost(adminUserPostRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export class UserApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new user
+     * @param {AdminUserPostRequest} adminUserPostRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public adminUserPost(adminUserPostRequest: AdminUserPostRequest, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).adminUserPost(adminUserPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

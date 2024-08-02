@@ -31,4 +31,7 @@ app.use('/professor',professorRoutes);
 const universityRoutes = require('./routes/university');
 app.use('/university',universityRoutes);
 
+const adminRoutes = require('./routes/admin');
+app.use('/admin',adminRoutes);
+
 module.exports = app;
