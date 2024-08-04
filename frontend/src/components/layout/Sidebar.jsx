@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const token = Cookie.get("token");
+  const logout = () => {
+    Cookie.remove('token');
+    window.location.href = '/login';
+  };
   const [role, setRole] = useState("");
   useEffect(() => {
     if (!token) return;
@@ -32,25 +36,25 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {role === "Student" && (
             <>
               <Nav.Link href="/student">Student</Nav.Link>
-              <Nav.Link href="/login">Sing out</Nav.Link>
+              <Nav.Link onClick={logout} href="/login">Sing out</Nav.Link>
             </>
           )}
           {role === "Professor" && (
             <>
               <Nav.Link href="/professor">Professor</Nav.Link>
-              <Nav.Link href="/login">Sing out</Nav.Link>
+              <Nav.Link onClick={logout} href="/login">Sing out</Nav.Link>
             </>
           )}
           {role === "Admin" && (
             <>
               <Nav.Link href="/admin">Admin</Nav.Link>
-              <Nav.Link href="/login">Sing out</Nav.Link>
+              <Nav.Link onClick={logout} href="/login">Sing out</Nav.Link>
               <Nav.Link href="/admin/user">User Management</Nav.Link>
             </>
           )}
           {role === "" && (
             <>
-              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link onClick={logout} href="/login">Login</Nav.Link>
               <Nav.Link href="/signup">Sing Up</Nav.Link>
             </>
           )}

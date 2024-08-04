@@ -5,7 +5,10 @@ import Cookie from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 const Header = ({ toggleSidebar }) => {
-  
+  const logout = () => {
+    Cookie.remove('token');
+    window.location.href = '/login';
+  };
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
   const token = Cookie.get("token");
@@ -64,6 +67,7 @@ const Header = ({ toggleSidebar }) => {
                     Profile
                   </a>
                   <a
+                    onClick={logout}
                     href="/login"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   >
