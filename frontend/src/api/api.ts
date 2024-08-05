@@ -763,15 +763,15 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Activate an external user
-         * @param {string} userId The ID of the external user to activate
+         * @param {string} externalId The ID of the external user to activate
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        adminExternalActivateUserIdPatch: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userId' is not null or undefined
-            assertParamExists('adminExternalActivateUserIdPatch', 'userId', userId)
-            const localVarPath = `/admin/external/activate/{userId}`
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+        adminExternalActivateExternalIdPatch: async (externalId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'externalId' is not null or undefined
+            assertParamExists('adminExternalActivateExternalIdPatch', 'externalId', externalId)
+            const localVarPath = `/admin/external/activate/{externalId}`
+                .replace(`{${"externalId"}}`, encodeURIComponent(String(externalId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -924,14 +924,14 @@ export const ExternalApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Activate an external user
-         * @param {string} userId The ID of the external user to activate
+         * @param {string} externalId The ID of the external user to activate
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async adminExternalActivateUserIdPatch(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminExternalGet200ResponseDocsInner>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminExternalActivateUserIdPatch(userId, options);
+        async adminExternalActivateExternalIdPatch(externalId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminExternalGet200ResponseDocsInner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminExternalActivateExternalIdPatch(externalId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ExternalApi.adminExternalActivateUserIdPatch']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ExternalApi.adminExternalActivateExternalIdPatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -988,12 +988,12 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Activate an external user
-         * @param {string} userId The ID of the external user to activate
+         * @param {string} externalId The ID of the external user to activate
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        adminExternalActivateUserIdPatch(userId: string, options?: any): AxiosPromise<AdminExternalGet200ResponseDocsInner> {
-            return localVarFp.adminExternalActivateUserIdPatch(userId, options).then((request) => request(axios, basePath));
+        adminExternalActivateExternalIdPatch(externalId: string, options?: any): AxiosPromise<AdminExternalGet200ResponseDocsInner> {
+            return localVarFp.adminExternalActivateExternalIdPatch(externalId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1040,13 +1040,13 @@ export class ExternalApi extends BaseAPI {
     /**
      * 
      * @summary Activate an external user
-     * @param {string} userId The ID of the external user to activate
+     * @param {string} externalId The ID of the external user to activate
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExternalApi
      */
-    public adminExternalActivateUserIdPatch(userId: string, options?: RawAxiosRequestConfig) {
-        return ExternalApiFp(this.configuration).adminExternalActivateUserIdPatch(userId, options).then((request) => request(this.axios, this.basePath));
+    public adminExternalActivateExternalIdPatch(externalId: string, options?: RawAxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).adminExternalActivateExternalIdPatch(externalId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

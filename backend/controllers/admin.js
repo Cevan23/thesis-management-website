@@ -76,7 +76,7 @@ exports.get_externals = (req, res, next) => {
 
 exports.activate_external = (req, res, next) => {
   External.findByIdAndUpdate(
-    { _id: req.params.userId, active: false },
+    req.params.externalId,
     { active: true },
     { new: true }
   )

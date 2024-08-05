@@ -78,13 +78,13 @@ router.get('/external', AdminController.get_externals);
 
 /**
  * @swagger
- * /admin/external/activate/{userId}:
+ * /admin/external/activate/{externalId}:
  *   patch:
  *     summary: Activate an external user
  *     tags: [External]
  *     parameters:
  *       - in: path
- *         name: userId
+ *         name: externalId
  *         schema:
  *           type: string
  *         required: true
@@ -136,7 +136,7 @@ router.get('/external', AdminController.get_externals);
  *                   type: string
  *                   example: "Internal server error"
  */
-router.patch('/external/activate/:userId', AdminController.activate_external);
+router.patch('/external/activate/:externalId', AdminController.activate_external);
 
 /**
  * @swagger

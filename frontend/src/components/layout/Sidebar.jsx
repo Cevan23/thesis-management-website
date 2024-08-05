@@ -48,8 +48,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {role === "Admin" && (
             <>
               <Nav.Link href="/admin">Admin</Nav.Link>
-              <Nav.Link onClick={logout} href="/login">Sing out</Nav.Link>
               <Nav.Link href="/admin/user">User Management</Nav.Link>
+              <Nav.Link onClick={logout} href="/login">Sing out</Nav.Link>
             </>
           )}
           {role === "" && (

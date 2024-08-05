@@ -2,6 +2,7 @@ import { Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Cookie from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
+import CustomTable from "../../share/Table/CustomTable";
 
 const StudentPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const StudentPage = () => {
         <p>Token: {token}</p>
         <p>Decoded Token: {decodedToken}</p>
       </div>
+      <CustomTable />
       <Button variant="primary" onClick={goToHomePage}>Go to Home Page</Button>
       
     </Container>
