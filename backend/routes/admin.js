@@ -186,6 +186,7 @@ router.patch('/external/activate/:externalId', AdminController.activate_external
  */
 router.post('/university', AdminController.create_university);
 
+
 /**
  * @swagger
  * /admin/user:
@@ -200,27 +201,37 @@ router.post('/university', AdminController.create_university);
  *             type: object
  *             required:
  *               - email
- *               - role
+ *               - password
  *             properties:
  *               email:
  *                 type: string
  *                 description: The email of the user
+ *                 example: "user@example.com"
+ *               password:
+ *                 type: string
+ *                 description: The password of the user
+ *                 example: "securepassword"
  *               name:
  *                 type: string
- *                 description: The name of the user
+ *                 description: The first name of the user
+ *                 example: "John"
  *               lastname:
  *                 type: string
- *                 description: The lastname of the user
+ *                 description: The last name of the user
+ *                 example: "Doe"
  *               role:
  *                 type: string
- *                 enum: ['Guest', 'Admin', 'Professor', 'Student', 'Secretariat']
  *                 description: The role of the user
+ *                 enum: ['Guest', 'Admin', 'Professor', 'Student', 'Secretariat']
+ *                 example: "Student"
  *               university:
  *                 type: string
  *                 description: The ID of the university
+ *                 example: "60d0fe4f5311236168a109ca"
  *               imageprofile:
  *                 type: string
- *                 description: The profile image URL of the user
+ *                 description: The URL of the user's profile image
+ *                 example: "https://example.com/image.jpg"
  *     responses:
  *       201:
  *         description: User created successfully
@@ -241,6 +252,9 @@ router.post('/university', AdminController.create_university);
  *                     email:
  *                       type: string
  *                       example: "user@example.com"
+ *                     password:
+ *                       type: string
+ *                       example: "securepassword"
  *                     name:
  *                       type: string
  *                       example: "John"
@@ -249,13 +263,13 @@ router.post('/university', AdminController.create_university);
  *                       example: "Doe"
  *                     role:
  *                       type: string
- *                       example: "Professor"
+ *                       example: "Student"
  *                     university:
  *                       type: string
- *                       example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                       example: "60d0fe4f5311236168a109ca"
  *                     imageprofile:
  *                       type: string
- *                       example: "https://example.com/profile.jpg"
+ *                       example: "https://example.com/image.jpg"
  *       500:
  *         description: Internal server error
  *         content:
@@ -268,6 +282,7 @@ router.post('/university', AdminController.create_university);
  *                   example: "Internal server error"
  */
 router.post('/user', AdminController.create_user);
+
 
 router.all("/*",checkAuth);
 

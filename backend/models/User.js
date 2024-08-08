@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
         required: true, 
         unique: true
         },
+    password: { type: String, required: true },
     name: String,
     lastname: String,
     role: { 
@@ -15,6 +16,7 @@ const userSchema = mongoose.Schema({
     },
     university: { type: mongoose.Schema.Types.ObjectId, ref: 'University'},
     imageprofile: String,
+    phone: String,
     });
 
 module.exports = mongoose.model('User', userSchema);

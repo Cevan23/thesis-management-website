@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ExternalApi } from '../../api/api';
-import { Button } from '@material-tailwind/react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +10,7 @@ const SignUp = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const api = new ExternalApi();
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -92,9 +93,13 @@ const SignUp = () => {
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
         {success && <div className="alert alert-success">{success}</div>}
+        <div class="d-flex justify-content-between">
+          <button type="submit" className="btn btn-primary">Sign Up</button>
+          <button className="btn btn-primary" onClick={() => navigate('/login')}>Login</button>
+        </div>
         
       </form>
-      <Button type="submit" className="btn btn-primary">Sign Up</Button>
+     
     </div>
   );
 };

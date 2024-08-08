@@ -3,6 +3,7 @@ import { Container, Button, Spinner} from "react-bootstrap";
 import UserDetail from "./UserDetail";
 import CustomTable from "../../../share/Table/CustomTable";
 import { ExternalApi } from "../../../../api/api";
+import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
   const externalApi = new ExternalApi();
@@ -12,12 +13,14 @@ const UserList = () => {
   const [externalList, setExternalList] = useState();
   const [loading, setLoading] = useState(false);
   const [originalList, setOriginalList] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
-      const getListExternal = async () => {
+      const getListExternal = async (page) => {
         try {
-          const response = await externalApi.adminExternalGet();
+          const response = await externalApi.adminExternalGet(page);
           if (response.data.docs && response.data.docs.length > 0) {
             // Xác định các tiêu đề cột và hàm render
             const activateExternal = async (id) => {
@@ -88,11 +91,11 @@ const UserList = () => {
         }
       };
 
-      getListExternal();
+      getListExternal(currentPage);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }, []);
+  }, [currentPage]);
 
   const handleFilterChange = (filters) => {
     if (!externalList) return;
@@ -112,27 +115,35 @@ const UserList = () => {
     }));
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page); 
+  };
+
   return (
-    <Container className="mt-4">
-      <h1>User List</h1>
+    <Container className="mt-4 p-3">
+      <div class="d-flex justify-content-between">
+        <span>User List </span>
+        <Button variant="primary" onClick={() => navigate('/admin/user/detail')}>Create</Button>
+      </div>
+      
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
       {loading && <Spinner animation="border" />} {
 
       }
       {!loading && ( 
-      <CustomTable
+      <CustomTable 
         headers={headers}
         data={externalList?.docs || []}
         totalRecords={externalList?.count || 0}
         totalPages={externalList?.pages || 0}
         onFilterChange={handleFilterChange}
-        maxHeight="500px"
+        maxHeight="1200px"
         width="120%"
         enableScroll={true}
+        onPageChange={handlePageChange}
       />
       )}
-      <Button variant="primary">Go to Home Page</Button>
     </Container>
   );
 };

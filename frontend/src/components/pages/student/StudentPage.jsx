@@ -20,8 +20,7 @@ const StudentPage = () => {
         <p>Token: {token}</p>
         <p>Decoded Token: {decodedToken}</p>
       </div>
-      <CustomTable />
-      <Button variant="primary" onClick={goToHomePage}>Go to Home Page</Button>
+      <button variant="primary" onClick={goToHomePage}>Go to Home Page</button>
       
     </Container>
   );

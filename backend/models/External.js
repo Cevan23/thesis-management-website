@@ -11,8 +11,7 @@ const externalSchema = mongoose.Schema({
     name: String,
     lastname: String,
     role: {type: String, default: "External" },
-    active :{ type: Boolean, default: false }
-
+    active :{ type: Boolean, default: false },
     });
 
 module.exports = mongoose.model('External', externalSchema);

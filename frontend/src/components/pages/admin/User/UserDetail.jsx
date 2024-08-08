@@ -84,6 +84,17 @@ const UserDetail = ({ userId }) => {
             />
           </div>
           <div className="mb-3">
+            <label>Password</label>
+            <input
+              className="form-control"
+              type="password"
+              name="password"
+              value={user.password || ""}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
             <label>Name</label>
             <input
               className="form-control"

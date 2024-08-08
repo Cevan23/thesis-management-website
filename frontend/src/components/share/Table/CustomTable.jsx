@@ -3,13 +3,16 @@ import { Table, Pagination, InputGroup, FormControl, DropdownButton, Dropdown, C
 import PropTypes from 'prop-types';
 import './Table.scss'
 
-const CustomTable = ({ headers, data, totalRecords, totalPages, onFilterChange, maxHeight, width, enableScroll }) => {
+const CustomTable = ({ headers, data, totalRecords, totalPages, onFilterChange, maxHeight, width, enableScroll,onPageChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({});
   const [filterValues, setFilterValues] = useState({});
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    if (onPageChange) {
+      onPageChange(page);
+    }
   };
 
   const handleFilterChange = (column, value) => {
@@ -72,25 +75,25 @@ const CustomTable = ({ headers, data, totalRecords, totalPages, onFilterChange, 
           )}
         </tbody>
         <tfoot>
-          <tr>
-            <td colSpan={headers.length}>
-              <Pagination>
-                {[...Array(totalPages)].map((_, pageIndex) => (
-                  <Pagination.Item
-                    key={pageIndex + 1}
-                    active={pageIndex + 1 === currentPage}
-                    onClick={() => handlePageChange(pageIndex + 1)}
-                  >
-                    {pageIndex + 1}
-                  </Pagination.Item>
-                ))}
-              </Pagination>
-              <div>
-                Page {currentPage} of {totalPages} | Total Records: {totalRecords}
-              </div>
-            </td>
-          </tr>
-        </tfoot>
+            <tr>
+              <td colSpan={headers.length}>
+                <Pagination>
+                  {[...Array(totalPages)].map((_, pageIndex) => (
+                    <Pagination.Item
+                      key={pageIndex + 1}
+                      active={pageIndex + 1 === currentPage}
+                      onClick={() => handlePageChange(pageIndex + 1)}
+                    >
+                      {pageIndex + 1}
+                    </Pagination.Item>
+                  ))}
+                </Pagination>
+                <div>
+                  Page {currentPage} of {totalPages} | Total Records: {totalRecords}
+                </div>
+              </td>
+            </tr>
+          </tfoot>
       </Table>
       
     </div>}
@@ -107,6 +110,7 @@ CustomTable.propTypes = {
   maxHeight: PropTypes.string,
   width: PropTypes.string,
   enableScroll: PropTypes.bool,
+  onPageChange: PropTypes.func,
 };
 
 CustomTable.defaultProps = {

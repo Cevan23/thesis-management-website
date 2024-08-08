@@ -3,37 +3,46 @@ const Thesis = require("../models/Thesis");
 const External = require("../models/External");
 const User = require("../models/User");
 const University = require("../models/University");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 exports.create_user = (req, res, next) => {
   try {
-    
-
-      const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        email: req.body.email,
-        name: req.body.name,
-        lastname: req.body.lastname,
-        role: req.body.role,
-        university: req.body.university, 
-        imageprofile: req.body.imageprofile,
-      });
-
-      user
-        .save()
-        .then((result) => {
-          console.log("User created");
-          res.status(201).json({
-            message: "User created successfully",
-            user: result,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({
-            error: err,
-          });
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      if (err) {
+        return res.status(500).json({
+          error: err,
         });
-    
+      } else {
+        const user = new User({
+          _id: new mongoose.Types.ObjectId(),
+          email: req.body.email,
+          password: hash,
+          name: req.body.name,
+          lastname: req.body.lastname,
+          role: req.body.role,
+          university: req.body.university, 
+          imageprofile: req.body.imageprofile,
+        });
+
+        user
+          .save()
+          .then((result) => {
+            console.log("User created");
+            res.status(201).json({
+              message: "User created successfully",
+              user: result,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+              error: err,
+            });
+          });
+        }
+      }
+    );
   } catch (error) {
     console.error("Error in create_user:", error);
     res.status(500).json({ error: "Server error" });

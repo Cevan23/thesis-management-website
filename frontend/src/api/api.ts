@@ -210,6 +210,12 @@ export interface AdminUserPost201ResponseUser {
      * @type {string}
      * @memberof AdminUserPost201ResponseUser
      */
+    'password'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserPost201ResponseUser
+     */
     'name'?: string;
     /**
      * 
@@ -249,13 +255,19 @@ export interface AdminUserPostRequest {
      */
     'email': string;
     /**
-     * The name of the user
+     * The password of the user
+     * @type {string}
+     * @memberof AdminUserPostRequest
+     */
+    'password': string;
+    /**
+     * The first name of the user
      * @type {string}
      * @memberof AdminUserPostRequest
      */
     'name'?: string;
     /**
-     * The lastname of the user
+     * The last name of the user
      * @type {string}
      * @memberof AdminUserPostRequest
      */
@@ -265,7 +277,7 @@ export interface AdminUserPostRequest {
      * @type {string}
      * @memberof AdminUserPostRequest
      */
-    'role': AdminUserPostRequestRoleEnum;
+    'role'?: AdminUserPostRequestRoleEnum;
     /**
      * The ID of the university
      * @type {string}
@@ -273,7 +285,7 @@ export interface AdminUserPostRequest {
      */
     'university'?: string;
     /**
-     * The profile image URL of the user
+     * The URL of the user\'s profile image
      * @type {string}
      * @memberof AdminUserPostRequest
      */
