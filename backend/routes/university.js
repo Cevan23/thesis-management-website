@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
-
+const checkAuth = require('../middleware/check-auth');
 const universityController = require('../controllers/university');
+
+router.all("/*",checkAuth);
 
 /**
  * @swagger

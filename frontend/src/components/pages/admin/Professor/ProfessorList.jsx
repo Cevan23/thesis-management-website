@@ -1,6 +1,7 @@
 import { Container, Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SearchComponent from "../../../share/Search/Search";
 
 const ProfessorList = () => {
   const navigate = useNavigate();
@@ -12,29 +13,27 @@ const ProfessorList = () => {
   const [originalList, setOriginalList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const handleSearch = (query) => {
+    console.log("Search query:", query);
+    // Thực hiện tìm kiếm hoặc xử lý dữ liệu với query
+  };
+
   return (
     <div>
       <h1>Professor List</h1>
-      <div >
-        <div className="row d-flex justify-content-between">
-          <Button className="col-lg-3" style={{ maxWidth: '120px' , minWidth: '100px', maxHeight: '50px', minHeight: '40px'}} onClick={() => navigate("/admin/professor/0")}>
+    
+        <div className="d-flex flex-row-reverse ">
+          <button
+            className="col-lg-3 btn btn-primary"
+            style={{ maxWidth: "120px", minWidth: "100px", minHeight: "35px",  marginLeft: "36px", marginRight: "10px" }}
+            onClick={() => navigate("/admin/professor/0")}
+          >
+            <i class="bi bi-plus-lg"></i>
             Add New
-          </Button>
-          <div class="col-md-9" style={{ maxWidth: '500px' , padding: '20px' , minWidth: '400px'}}>
-            <div>
-              <span>
-                <i class="bi bi-search"></i>
-              </span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </div>
+          </button>
+          <SearchComponent onSearch={handleSearch} />
         </div>
-      </div>
+   
       <div>
         <Container>
           <span>Table</span>

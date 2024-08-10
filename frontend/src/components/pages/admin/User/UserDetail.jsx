@@ -4,8 +4,10 @@ import {
   AdminUserPostRequestRoleEnum,
   UniversityApi,
 } from "../../../../api/api";
+import Cookie from "js-cookie";
 
 const UserDetail = ({ userId }) => {
+  const token = Cookie.get("token");
   const userApi = new UserApi();
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
@@ -17,7 +19,12 @@ const UserDetail = ({ userId }) => {
   useEffect(() => {
     const fetchUniversities = async () => {
       try {
-        const response = await universityApi.universityGetGet();
+        const options = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await universityApi.universityGetGet(1,null,options);
         if (response) {
             const universities = response.data.docs.map((university) => ({
                 id: university._id,
@@ -57,7 +64,12 @@ const UserDetail = ({ userId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await userApi.adminUserPost(user);
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await userApi.adminUserPost(user,options);
       setSuccess(response.data.message);
       
     } catch (error) {

@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "cdbreact": "^1.5.19",
     "frontend": "file:",
     "js-cookie": "^3.0.5",

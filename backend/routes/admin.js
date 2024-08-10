@@ -3,6 +3,275 @@ const router = express.Router();
 const AdminController = require('../controllers/admin');
 const checkAuth = require('../middleware/check-auth');
 
+
+//protected routes
+router.all("/*",checkAuth);
+router.all("/*",checkAuth,AdminController.is_admin);
+
+/**
+ * @swagger
+ * /admin/user/{role}:
+ *   get:
+ *     summary: Retrieve a list of users by role
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: role
+ *         schema:
+ *           type: string
+ *           enum: ['Professor', 'Student', 'Secretariat']
+ *         required: true
+ *         description: The role of the users to retrieve (e.g., Professor, Student, Secretariat)
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         required: false
+ *         description: The page number for pagination
+ *     responses:
+ *       200:
+ *         description: A list of users with the specified role
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 docs:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                       email:
+ *                         type: string
+ *                         example: "user@example.com"
+ *                       name:
+ *                         type: string
+ *                         example: "John"
+ *                       lastname:
+ *                         type: string
+ *                         example: "Doe"
+ *                       role:
+ *                         type: string
+ *                         example: "Professor"
+ *                       university:
+ *                         type: string
+ *                         example: "60d2c7f4f1b3c5d4f9b1e1d8"
+ *                       phone:
+ *                         type: string
+ *                         example: "+1234567890"
+ *                       imageprofile:
+ *                         type: string
+ *                         example: "http://example.com/image.jpg"
+ *                 count:
+ *                   type: integer
+ *                   example: 10
+ *                 pages:
+ *                   type: integer
+ *                   example: 2
+ *       400:
+ *         description: Invalid page number
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid page number"
+ *       404:
+ *         description: No users found for the specified role
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No entries found"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Internal server error"
+ */
+router.get('/user/:role', AdminController.get_users_by_role);
+
+/**
+ * @swagger
+ * /admin/user/{userId}:
+ *   put:
+ *     summary: Update a user by ID
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the user to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "newemail@example.com"
+ *               name:
+ *                 type: string
+ *                 example: "John"
+ *               lastname:
+ *                 type: string
+ *                 example: "Doe"
+ *               role:
+ *                 type: string
+ *                 enum: [Guest, Admin, Professor, Student, Secretariat]
+ *                 example: "Admin"
+ *               university:
+ *                 type: string
+ *                 example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *               phone:
+ *                 type: string
+ *                 example: "0987654321"
+ *               imageprofile:
+ *                 type: string
+ *                 example: "newprofile.jpg"
+ *     responses:
+ *       200:
+ *         description: Successfully updated user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                 email:
+ *                   type: string
+ *                   example: "newemail@example.com"
+ *                 name:
+ *                   type: string
+ *                   example: "John"
+ *                 lastname:
+ *                   type: string
+ *                   example: "Doe"
+ *                 role:
+ *                   type: string
+ *                   example: "Admin"
+ *                 university:
+ *                   type: string
+ *                   example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                 phone:
+ *                   type: string
+ *                   example: "0987654321"
+ *                 imageprofile:
+ *                   type: string
+ *                   example: "newprofile.jpg"
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No entries found"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Internal server error"
+ */
+router.put('/user/:userId', AdminController.update_user);
+
+
+/**
+ * @swagger
+ * /admin/user/{userId}:
+ *   delete:
+ *     summary: Delete a user by ID
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the user to delete
+ *     responses:
+ *       200:
+ *         description: Successfully deleted user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                 email:
+ *                   type: string
+ *                   example: "user@example.com"
+ *                 name:
+ *                   type: string
+ *                   example: "John"
+ *                 lastname:
+ *                   type: string
+ *                   example: "Doe"
+ *                 role:
+ *                   type: string
+ *                   example: "Admin"
+ *                 university:
+ *                   type: string
+ *                   example: "60d2c7f4f1b3c5d4f9b1e1d7"
+ *                 phone:
+ *                   type: string
+ *                   example: "1234567890"
+ *                 imageprofile:
+ *                   type: string
+ *                   example: "profile.jpg"
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No entries found"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Internal server error"
+ */
+router.delete('/user/:userId', AdminController.delete_user);
+
+
 /**
  * @swagger
  * /admin/external:
@@ -282,8 +551,5 @@ router.post('/university', AdminController.create_university);
  *                   example: "Internal server error"
  */
 router.post('/user', AdminController.create_user);
-
-
-router.all("/*",checkAuth);
 
 module.exports = router;

@@ -94,32 +94,6 @@ export interface AdminExternalGet200ResponseDocsInner {
 /**
  * 
  * @export
- * @interface AdminExternalGet404Response
- */
-export interface AdminExternalGet404Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminExternalGet404Response
-     */
-    'message'?: string;
-}
-/**
- * 
- * @export
- * @interface AdminExternalGet500Response
- */
-export interface AdminExternalGet500Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminExternalGet500Response
-     */
-    'error'?: string;
-}
-/**
- * 
- * @export
  * @interface AdminUniversityPost200Response
  */
 export interface AdminUniversityPost200Response {
@@ -301,6 +275,295 @@ export const AdminUserPostRequestRoleEnum = {
 } as const;
 
 export type AdminUserPostRequestRoleEnum = typeof AdminUserPostRequestRoleEnum[keyof typeof AdminUserPostRequestRoleEnum];
+
+/**
+ * 
+ * @export
+ * @interface AdminUserRoleGet200Response
+ */
+export interface AdminUserRoleGet200Response {
+    /**
+     * 
+     * @type {Array<AdminUserRoleGet200ResponseDocsInner>}
+     * @memberof AdminUserRoleGet200Response
+     */
+    'docs'?: Array<AdminUserRoleGet200ResponseDocsInner>;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdminUserRoleGet200Response
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdminUserRoleGet200Response
+     */
+    'pages'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserRoleGet200ResponseDocsInner
+ */
+export interface AdminUserRoleGet200ResponseDocsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'lastname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'role'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'university'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet200ResponseDocsInner
+     */
+    'imageprofile'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserRoleGet400Response
+ */
+export interface AdminUserRoleGet400Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet400Response
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserRoleGet404Response
+ */
+export interface AdminUserRoleGet404Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet404Response
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserRoleGet500Response
+ */
+export interface AdminUserRoleGet500Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserRoleGet500Response
+     */
+    'error'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserUserIdDelete200Response
+ */
+export interface AdminUserUserIdDelete200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'lastname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'role'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'university'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdDelete200Response
+     */
+    'imageprofile'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserUserIdPut200Response
+ */
+export interface AdminUserUserIdPut200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    '_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'lastname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'role'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'university'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPut200Response
+     */
+    'imageprofile'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AdminUserUserIdPutRequest
+ */
+export interface AdminUserUserIdPutRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'lastname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'role'?: AdminUserUserIdPutRequestRoleEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'university'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserUserIdPutRequest
+     */
+    'imageprofile'?: string;
+}
+
+export const AdminUserUserIdPutRequestRoleEnum = {
+    Guest: 'Guest',
+    Admin: 'Admin',
+    Professor: 'Professor',
+    Student: 'Student',
+    Secretariat: 'Secretariat'
+} as const;
+
+export type AdminUserUserIdPutRequestRoleEnum = typeof AdminUserUserIdPutRequestRoleEnum[keyof typeof AdminUserUserIdPutRequestRoleEnum];
 
 /**
  * 
@@ -1517,6 +1780,119 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Retrieve a list of users by role
+         * @param {AdminUserRoleGetRoleEnum} role The role of the users to retrieve (e.g., Professor, Student, Secretariat)
+         * @param {number} [page] The page number for pagination
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserRoleGet: async (role: AdminUserRoleGetRoleEnum, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'role' is not null or undefined
+            assertParamExists('adminUserRoleGet', 'role', role)
+            const localVarPath = `/admin/user/{role}`
+                .replace(`{${"role"}}`, encodeURIComponent(String(role)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete a user by ID
+         * @param {string} userId The ID of the user to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserUserIdDelete: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('adminUserUserIdDelete', 'userId', userId)
+            const localVarPath = `/admin/user/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update a user by ID
+         * @param {string} userId The ID of the user to update
+         * @param {AdminUserUserIdPutRequest} adminUserUserIdPutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserUserIdPut: async (userId: string, adminUserUserIdPutRequest: AdminUserUserIdPutRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('adminUserUserIdPut', 'userId', userId)
+            // verify required parameter 'adminUserUserIdPutRequest' is not null or undefined
+            assertParamExists('adminUserUserIdPut', 'adminUserUserIdPutRequest', adminUserUserIdPutRequest)
+            const localVarPath = `/admin/user/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(adminUserUserIdPutRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1540,6 +1916,47 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['UserApi.adminUserPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * 
+         * @summary Retrieve a list of users by role
+         * @param {AdminUserRoleGetRoleEnum} role The role of the users to retrieve (e.g., Professor, Student, Secretariat)
+         * @param {number} [page] The page number for pagination
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async adminUserRoleGet(role: AdminUserRoleGetRoleEnum, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminUserRoleGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminUserRoleGet(role, page, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.adminUserRoleGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete a user by ID
+         * @param {string} userId The ID of the user to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async adminUserUserIdDelete(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminUserUserIdDelete200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminUserUserIdDelete(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.adminUserUserIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update a user by ID
+         * @param {string} userId The ID of the user to update
+         * @param {AdminUserUserIdPutRequest} adminUserUserIdPutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async adminUserUserIdPut(userId: string, adminUserUserIdPutRequest: AdminUserUserIdPutRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminUserUserIdPut200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.adminUserUserIdPut(userId, adminUserUserIdPutRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.adminUserUserIdPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -1559,6 +1976,38 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         adminUserPost(adminUserPostRequest: AdminUserPostRequest, options?: any): AxiosPromise<AdminUserPost201Response> {
             return localVarFp.adminUserPost(adminUserPostRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve a list of users by role
+         * @param {AdminUserRoleGetRoleEnum} role The role of the users to retrieve (e.g., Professor, Student, Secretariat)
+         * @param {number} [page] The page number for pagination
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserRoleGet(role: AdminUserRoleGetRoleEnum, page?: number, options?: any): AxiosPromise<AdminUserRoleGet200Response> {
+            return localVarFp.adminUserRoleGet(role, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete a user by ID
+         * @param {string} userId The ID of the user to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserUserIdDelete(userId: string, options?: any): AxiosPromise<AdminUserUserIdDelete200Response> {
+            return localVarFp.adminUserUserIdDelete(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update a user by ID
+         * @param {string} userId The ID of the user to update
+         * @param {AdminUserUserIdPutRequest} adminUserUserIdPutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adminUserUserIdPut(userId: string, adminUserUserIdPutRequest: AdminUserUserIdPutRequest, options?: any): AxiosPromise<AdminUserUserIdPut200Response> {
+            return localVarFp.adminUserUserIdPut(userId, adminUserUserIdPutRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1581,7 +2030,54 @@ export class UserApi extends BaseAPI {
     public adminUserPost(adminUserPostRequest: AdminUserPostRequest, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).adminUserPost(adminUserPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
+
+    /**
+     * 
+     * @summary Retrieve a list of users by role
+     * @param {AdminUserRoleGetRoleEnum} role The role of the users to retrieve (e.g., Professor, Student, Secretariat)
+     * @param {number} [page] The page number for pagination
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public adminUserRoleGet(role: AdminUserRoleGetRoleEnum, page?: number, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).adminUserRoleGet(role, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete a user by ID
+     * @param {string} userId The ID of the user to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public adminUserUserIdDelete(userId: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).adminUserUserIdDelete(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update a user by ID
+     * @param {string} userId The ID of the user to update
+     * @param {AdminUserUserIdPutRequest} adminUserUserIdPutRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public adminUserUserIdPut(userId: string, adminUserUserIdPutRequest: AdminUserUserIdPutRequest, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).adminUserUserIdPut(userId, adminUserUserIdPutRequest, options).then((request) => request(this.axios, this.basePath));
+    }
 }
 
+/**
+ * @export
+ */
+export const AdminUserRoleGetRoleEnum = {
+    Professor: 'Professor',
+    Student: 'Student',
+    Secretariat: 'Secretariat'
+} as const;
+export type AdminUserRoleGetRoleEnum = typeof AdminUserRoleGetRoleEnum[keyof typeof AdminUserRoleGetRoleEnum];
 
 

@@ -88,7 +88,7 @@ router.post("/signup", ExternalController.user_signup);
  */
 router.post("/login", ExternalController.user_login);
 
-
 router.all("/*",checkAuth);
 
+// protacted router for external
 module.exports = router;

@@ -32,15 +32,6 @@ const Header = ({ toggleSidebar }) => {
       <Navbar.Brand href="#home">Thesis Tracker</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Form className="d-flex ml-auto">
-          <FormControl
-            type="search"
-            placeholder="Search"
-            className="mr-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form>
         <div className="ml-auto">
           <button
             className="flex items-center focus:outline-none"

@@ -6,6 +6,105 @@ const University = require("../models/University");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+exports.get_users_by_role = (req, res, next) => {
+  const perPage = 6; // Number of users per page
+  const page = parseInt(req.query.page) || 1; // Current page, default to 1
+
+  // Validate page number
+  if (page < 1) {
+    return res.status(400).json({ message: "Invalid page number" });
+  }
+
+  let count;
+
+  // Count total number of users with the specified role
+  User.countDocuments({ role: req.params.role })
+    .then((result) => {
+      count = result;
+      return User.find({ role: req.params.role })
+        .select("_id email name lastname role university phone imageprofile")
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .exec();
+    })
+    .then((docs) => {
+      if (docs.length > 0) {
+        const response = {
+          docs: docs,
+          count: count,
+          pages: Math.ceil(count / perPage),
+        };
+        res.status(200).json(response);
+      } else {
+        res.status(404).json({
+          message: "No entries found",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
+
+exports.is_admin= (req,res,next) => {
+  adminId=req.userData.userId
+  External.findById(adminId)
+  .select('role')
+  .exec()
+  .then(doc => {
+      if(doc) {
+          if(doc.role=='Admin') { 
+              console.log('Auth passed: User is admin')
+              return next();
+          }
+      }
+          return res.status(401).json({
+              message: 'Auth failed not ADMIN'
+          })
+  })
+}
+
+exports.delete_user = (req, res, next) => {
+  User.findByIdAndDelete(req.params.userId)
+    .select("_id email name lastname role university phone imageprofile")
+    .exec()
+    .then((docs) => {
+      if (docs != null) res.status(200).json(docs);
+      else
+        res.status(404).json({
+          message: "No entries found",
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
+
+exports.update_user = (req,res, next) => {
+  User.findByIdAndUpdate(req.params.userId, req.body, {new: true})
+  .select("_id email name lastname role university phone imageprofile")
+  .exec()
+  .then((docs) => {
+    if (docs != null) res.status(200).json(docs);
+    else
+      res.status(404).json({
+        message: "No entries found",
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json({
+      error: err,
+    });
+  });
+};
+
 exports.create_user = (req, res, next) => {
   try {
     bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -126,3 +225,5 @@ exports.create_university = (req, res, next) => {
       res.status(500).json({ error: err });
     });
 };
+
+
